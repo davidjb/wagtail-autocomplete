@@ -16,11 +16,11 @@ Setup
 
 Add ``'wagtailautocomplete'`` to your project's ``INSTALLED_APPS``.
 
-Add Wagtail Autocomplete's URL patterns to your project's URL config, usually in ``urls.py``. This should come before your ``wagtail_urls`` and if you are using the suggested pattern ``r'^admin/autocomplete/'`` it must also come before your admin urls:
+Add Wagtail Autocomplete's URL patterns to your project's URL config, usually in ``urls.py``. This should come before your ``wagtail_urls`` and if you are using the suggested pattern ``'admin/autocomplete/'`` it must also come before your admin urls:
 
 .. code-block:: python
 
-    from django.conf.urls import include, url
+    from django.conf.urls import include, path
 
     from wagtail.wagtailcore import urls as wagtail_urls
 
@@ -28,10 +28,10 @@ Add Wagtail Autocomplete's URL patterns to your project's URL config, usually in
 
     urlpatterns = [
         # ...
-        url(r'^admin/autocomplete/', include(autocomplete_admin_urls)),
-        url(r'^admin/', include(wagtailadmin_urls)),
+        path('admin/autocomplete/', include(autocomplete_admin_urls)),
+        path('admin/', include(wagtailadmin_urls)),
         # ...
-        url(r'', include(wagtail_urls)),
+        path('', include(wagtail_urls)),
     ]
 
 This makes available custom API endpoints that provide the search and creation behavior for the widget.
